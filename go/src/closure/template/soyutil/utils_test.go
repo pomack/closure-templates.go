@@ -1,4 +1,4 @@
-package soyutils_test;
+package soyutil_test;
 
 import (
   . "closure/template/soyutil"
