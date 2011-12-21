@@ -133,12 +133,13 @@ func BidiMarkAfterKnownDir(bidiGlobalDir int, dir int, text string, opt_isHtml b
  *     if rtl, 0 if unknown.
  * @param {*} str The string to be wrapped. Can be other types, but the value
  *     will be coerced to a string.
+ * @param {bool} isHtml whether the text is HTML
  * @return {string} The wrapped string.
  */
-func BidiSpanWrap(bidiGlobalDir int, str string) string {
+func BidiSpanWrap(bidiGlobalDir int, str string, isHtml bool) string {
   var output string
-  textDir := BidiTextDir(str, true)
-  reset := BidiMarkAfterKnownDir(bidiGlobalDir, textDir, str, true)
+  textDir := BidiTextDir(str, isHtml)
+  reset := BidiMarkAfterKnownDir(bidiGlobalDir, textDir, str, isHtml)
   switch {
   case textDir > 0 && bidiGlobalDir <= 0:
     output = "<span dir=\"ltr\">" + str + "</span>"
@@ -162,12 +163,13 @@ func BidiSpanWrap(bidiGlobalDir int, str string) string {
  *     if rtl, 0 if unknown.
  * @param {*} str The string to be wrapped. Can be other types, but the value
  *     will be coerced to a string.
+ * @param {bool} isHtml whether the text is HTML
  * @return {string} The wrapped string.
  */
-func BidiUnicodeWrap(bidiGlobalDir int, str string) string {
+func BidiUnicodeWrap(bidiGlobalDir int, str string, isHtml bool) string {
   var output string
-  textDir := BidiTextDir(str, true)
-  reset := BidiMarkAfterKnownDir(bidiGlobalDir, textDir, str, true)
+  textDir := BidiTextDir(str, isHtml)
+  reset := BidiMarkAfterKnownDir(bidiGlobalDir, textDir, str, isHtml)
   switch {
   case textDir > 0 && bidiGlobalDir <= 0:
     output = "\u202A" + str + "\u202C"
