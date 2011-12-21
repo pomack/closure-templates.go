@@ -864,6 +864,16 @@ func (p SoyMapData) Contains(key string) bool {
   return ok
 }
 
+func (p SoyMapData) Keys() []string {
+    arr := make([]string, len(p))
+    i := 0
+    for k := range p {
+        arr[i] = k
+        i++
+    }
+    return arr
+}
+
 func (p SoyMapData) Set(key string, value SoyData) {
   p[key] = value
 }
